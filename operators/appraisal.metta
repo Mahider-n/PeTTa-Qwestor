@@ -98,7 +98,7 @@
          ($goal     (get-goals $space))
          ($_ (remove-state $space))
          ($updated  (state $goal (cons modulator-vector $mods)))
-         ($_ (add-state $space $updated))          
+         ($_ (addState $space $updated))          
          )
          (println! (mods update success 🎉))
    )
