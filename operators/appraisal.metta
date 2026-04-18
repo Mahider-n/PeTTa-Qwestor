@@ -99,7 +99,7 @@
          ($anti  (match $space (state $turn  $x $y $z $alpha) $z))
          ($_ (remove-state $space))
          ($updated  (state  $t $goal (cons modulator-vector $mods) $anti $alpha))
-         ($_ (add-state $space $updated))          
+         ($_ (addState $space $updated))          
          )
          (println! (mods update success 🎉))
    )
@@ -284,7 +284,7 @@
                         0.0))
         ($_ (println! ("cold_start_horizon: " $cold_start_horizon " cold_start_strength: " $cold_start_strength "cold_phase: " $cold_phase " cold_weight: " $coldWeight)))
         ($cx (getContext $space complexity))
-        ($u (_effective $m_urgency $cx $coldWeight))
+        ($u (_effective $m_urgency $target_u $coldWeight))
         ($res (_effective $m_resolution $cx $coldWeight))
         ($ux (_effective $m_user_expertise $exp $coldWeight))
         ($_ (println! ("After cold weighting: u: " $u " res: " $res " ux: " $ux " threshold: " $thre)))
@@ -329,7 +329,7 @@
                         (cx $cx)
                         (ambiguity $amb)
                         (expertise $exp)
-                        (threshold_signal $thrl)
+                        (threshold_signal $thr)
                         (familiarity_signal $fam)
                         (failure_signal $fs)
                         (urgent_flag $urg)
@@ -366,7 +366,7 @@
 
 
 (= (getAntiGoals $space)
-     (match $space (state $x $y $anti_goals $alpha) (cdr-atom $anti_goals))
+     (match $space (state $t $x $y $anti_goals $alpha) $anti_goals)
 )
 
 
