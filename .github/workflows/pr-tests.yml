@@ -1,0 +1,39 @@
+name: PR Tests
+
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install hyperon python-dotenv requests
+          # If MeTTa needs to be built from source, uncomment the following:
+          # git clone https://github.com/trueagi-io/hyperon-experimental.git
+          # cd hyperon-experimental && cargo build --release
+          # echo "$(pwd)/target/release" >> $GITHUB_PATH
+
+      - name: Make test script executable
+        run: chmod +x run-tests.sh
+
+      - name: Run MeTTa Tests
+        env:
+          # Uncomment and add your API_KEY to GitHub Secrets if tests require it
+          # API_KEY: ${{ secrets.API_KEY }}
+          MODEL_NAME: "google/gemini-2.0-flash-exp:free"
+        run: ./run-tests.sh
