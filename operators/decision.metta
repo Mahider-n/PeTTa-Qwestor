@@ -61,7 +61,7 @@
         ($current-anti-goal (match $space (state $turn $x $y $anti $alpha) $anti))
         ($current-alpha (match $space (state $turn $x $y $anti $alpha) $alpha))
         
-        ($updateGoal  (case $name
+        ($updated-goal  (case $name
         (
             (efficiency           (eval (replaceByIndex $current-goal 0  ($name $value))))
             (accuracy             (eval (replaceByIndex $current-goal 1  ($name $value))))
@@ -78,7 +78,7 @@
             (over_safety          (eval (replaceByIndex $current-goal 12 ($name $value))))
             (over_honesty         (eval (replaceByIndex $current-goal 13 ($name $value))))
         )))
-        ($updated-state (state $current-turn (cons goal-vector $update-goal) $current-modulator-vec $current-anti-goal $current-alpha))
+        ($updated-state (state $current-turn (cons goal-vector $updateoal) $current-modulator-vec $current-anti-goal $current-alpha))
         ($_ (remove-state $space))
      )
      (add-atom $space $updated-state)
