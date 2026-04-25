@@ -279,7 +279,7 @@
         ($cold_start_strength (getAlpha $space cold_start_strength))
         ($cold_phase (/ (- $cold_start_horizon $t) $cold_start_horizon))
 
-        ($coldWeight (if (and (> $cold_start_horizon 0.0) (> $cold_start_strength $t)) 
+        ($coldWeight (if (and (> $cold_start_horizon 0.0) (< $cold_start_strength $t)) 
                        (eval (_clamp01 (* $cold_start_strength $cold_phase))) 
                         0.0))
         ($_ (println! ("cold_start_horizon: " $cold_start_horizon " cold_start_strength: " $cold_start_strength "cold_phase: " $cold_phase " cold_weight: " $coldWeight)))

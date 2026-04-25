@@ -6,6 +6,8 @@ from dotenv import load_dotenv
 import re
 import os
 
+from main.score_action import action_map_transpiler
+
 def _clamp01(value: float) -> float:
     if value < 0.0:
         return 0.0
