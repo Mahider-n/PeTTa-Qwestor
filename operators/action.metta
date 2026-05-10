@@ -1,5 +1,4 @@
-!(import! &self appraisal)
-!(import! &self "../main/score_action.py")
+
 (= (Actions $space)
  ((AG act_respond (
         (efficiency 1.00)
@@ -237,3 +236,21 @@
  )
 
 ))
+
+
+
+
+
+
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose 10)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.3) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose -1000)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.4) (urgent_flag false) (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose -1000)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.2) (urgent_flag true)  (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose -1000)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.8) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose 10)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.3) (urgent_flag false) (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose 10)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.3) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose 10)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.2) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose -300)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.6) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose 11)))
+!(test (guard-decompose ((Score act_decompose 10)) ((complexity 0.5) (ambiguity 0.2) (urgent_flag false) (needs_task_plan 0.6) (reflective_intent 0.8) (needs_external_evidence 0.4))) ((Score act_decompose 11)))
+
+
